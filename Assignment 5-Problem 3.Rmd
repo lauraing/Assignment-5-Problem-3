@@ -11,3 +11,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 3) Male and female salaries for starting postdoctoral and other employment positions (2015).
 Compare median salaries for male and female doctorate recipients in 2015. Answer these two questions: Does median salary differ significantly between male and female starting postdoc positions? Does median salary differ significantly between male and female PhD recipients in non-postdoc employment positions?
+
+
+```{r}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(plotly)
+library(ggrepel)
+library(extrafont)
+library(pwr)
+library(effsize)
+library(vcdExtra)
+
+```
+
+```{r}
+med_sal_2015 <- read_csv("Median salary for doctoral recipients.csv")
+```
+
+```{r}
+med_sal_15_Employ <- med_sal_2015 %>% 
+  select('Field of study', Employ_Male, Employ_Female)
+
+med_sal_15_PostDoc <- med_sal_2015 %>% 
+  select('Field of study', PostDoc_Male, PostDoc_Female)
+```
+
