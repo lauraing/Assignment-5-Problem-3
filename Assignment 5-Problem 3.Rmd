@@ -27,14 +27,38 @@ library(vcdExtra)
 ```
 
 ```{r}
-med_sal_2015 <- read_csv("Median salary for doctoral recipients.csv")
+med_sal_2015 <- read_csv("Med_Sal_2015.csv")
+
+
+med_sal_2015 
 ```
 
 ```{r}
 med_sal_15_Employ <- med_sal_2015 %>% 
-  select('Field of study', Employ_Male, Employ_Female)
+  select(Field, Male, Female, Status) %>% 
+  filter(Status!= "Post_Doc")
+med_sal_15_Employ
 
 med_sal_15_PostDoc <- med_sal_2015 %>% 
-  select('Field of study', PostDoc_Male, PostDoc_Female)
+  select(Field, Male, Female, Status) %>% 
+  filter(Status!= "Non_Post_Doc")
+
+med_sal_15_PostDoc
+
+
+```
+
+
+```{r}
+wsr_Employ_Gender <- wilcox.test(med_sal_15_Employ$Male, med_sal_15_Employ$Female, paired = TRUE)
+
+wsr_Employ_Gender
+```
+
+
+```{r}
+wsr_Post_Doc_Gender <- wilcox.test(med_sal_15_PostDoc$Male, med_sal_15_PostDoc$Female, paried = TRUE)
+
+wsr_Post_Doc_Gender 
 ```
 
