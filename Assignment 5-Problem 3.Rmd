@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Compare median salaries for male and female doctorate recipients in 2015. Answer these two questions: Does median salary differ significantly between male and female starting postdoc positions? Does median salary differ significantly between male and female PhD recipients in non-postdoc employment positions?
 
 
-```{r}
+```{r} 
 library(tidyverse)
 library(knitr)
 library(kableExtra)
@@ -24,11 +24,13 @@ library(pwr)
 library(effsize)
 library(vcdExtra)
 
+#load packages needed
+
 ```
 
 ```{r}
 med_sal_2015 <- read_csv("Med_Sal_2015.csv")
-
+#read in data (data wrangled directly in excel)
 
 med_sal_2015 
 ```
@@ -39,9 +41,13 @@ med_sal_15_Employ <- med_sal_2015 %>%
   filter(Status!= "Post_Doc")
 med_sal_15_Employ
 
+#made dataset for just Non_Post_Doc values
+
 med_sal_15_PostDoc <- med_sal_2015 %>% 
   select(Field, Male, Female, Status) %>% 
   filter(Status!= "Non_Post_Doc")
+
+#made dataset for just Post_Doc values
 
 med_sal_15_PostDoc
 
@@ -52,12 +58,16 @@ med_sal_15_PostDoc
 ```{r}
 wsr_Employ_Gender <- wilcox.test(med_sal_15_Employ$Male, med_sal_15_Employ$Female, paired = TRUE)
 
+#Run Wilcox Signed Rank for Non Post Doc dataset (significant value found)
+
 wsr_Employ_Gender
 ```
 
 
 ```{r}
 wsr_Post_Doc_Gender <- wilcox.test(med_sal_15_PostDoc$Male, med_sal_15_PostDoc$Female, paried = TRUE)
+
+#Run Wilcox Signed Rank for Post Doc dataset (p-value is non-significant)
 
 wsr_Post_Doc_Gender 
 ```
