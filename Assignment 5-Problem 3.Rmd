@@ -65,7 +65,7 @@ wsr_Employ_Gender
 
 
 ```{r}
-wsr_Post_Doc_Gender <- wilcox.test(med_sal_15_PostDoc$Male, med_sal_15_PostDoc$Female, paried = TRUE)
+wsr_Post_Doc_Gender <- wilcox.test(med_sal_15_PostDoc$Male, med_sal_15_PostDoc$Female, paired = TRUE)
 
 #Run Wilcox Signed Rank for Post Doc dataset (p-value is non-significant)
 
