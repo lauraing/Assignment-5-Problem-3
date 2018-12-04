@@ -2,7 +2,9 @@
 title: "Assignment 5-Problem 3"
 author: "Laura Ingulsrud"
 date: "11/28/2018"
-output: html_document
+output:
+  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -97,7 +99,7 @@ Med_sal_barchart <- ggplot(med_sal_bar, aes(Field, Salary)) +
   facet_wrap(~Status) +
   scale_fill_manual(values = c("peachpuff2", "darkslateblue")) +
   ylab("Salary (dollars)") +
-  xlab("Field of Employment") +
+  xlab(" ") +
   scale_y_continuous(expand = c(0,0), limits = c(0,130000), breaks = c(0, 40000, 80000, 130000)) +
   theme(axis.text.x = element_text(size = 7, angle = 45, hjust = 1), axis.text.y = element_text(size = 7), axis.title.x = element_text(size = 8, face = "bold"), axis.title.y = element_text(size = 8, face = "bold")) +
   theme(panel.spacing = unit(1.75, "lines"), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"), strip.background = element_blank(), strip.text.x = element_text(face = "bold", size = 7.5)) +
