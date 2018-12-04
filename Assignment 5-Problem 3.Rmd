@@ -72,3 +72,29 @@ wsr_Post_Doc_Gender <- wilcox.test(med_sal_15_PostDoc$Male, med_sal_15_PostDoc$F
 wsr_Post_Doc_Gender 
 ```
 
+
+
+```{r}
+med_sal_bar <- read_csv("Med_Sal_2015_bar chart.csv")
+
+med_sal_bar_15_Employ <- med_sal_bar %>% 
+  select(Field, Gender, Salary, Status) %>% 
+  filter(Status!= "Post_Doc")
+
+med_sal_bar_15_PostDoc <- med_sal_bar %>% 
+  select(Field, Gender, Salary, Status) %>% 
+  filter(Status!= "Non_Post_Doc")
+
+Med_sal_barchart <- ggplot(med_sal_bar, aes(Field, Salary)) +
+  geom_bar(aes(fill = Gender), width = 0.5, position = position_dodge(width = 0.6), stat = "identity") +
+  theme(legend.position = "right", legend.title = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank()) +
+  scale_x_discrete(breaks = c("Ag_sci_nat_resources", "Biological and biomedical sciences", "Health sciences", "Chemistry", "Geosciences, atmospheric, and ocean sciences", "Physics and astronomy", "Mathematics and computer sciences", "Psychology", "Economics", "Social sciences", "Engineering", "Education", "Humanities and arts", "Business management and administration", "Other non-S&E fields" )) +
+  coord_flip() +
+  facet_wrap(~Status)
+
+
+
+
+Med_sal_barchart
+```
+
