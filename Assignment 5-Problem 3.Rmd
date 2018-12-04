@@ -95,11 +95,14 @@ Med_sal_barchart <- ggplot(med_sal_bar, aes(Field, Salary)) +
   scale_x_discrete(breaks = c("Agricultural sciences and natural resources", "Biological and biomedical sciences", "Health sciences", "Chemistry", "Geosciences, atmospheric, and ocean sciences", "Physics and astronomy", "Mathematics and computer sciences", "Psychology", "Economics", "Social sciences", "Engineering", "Education", "Humanities and arts", "Business management and administration", "Other (Non-Science and Engineering)" )) +
   coord_flip() +
   facet_wrap(~Status) +
-  scale_fill_manual(values = c("darksalmon", "darkslateblue")) +
+  scale_fill_manual(values = c("peachpuff2", "darkslateblue")) +
   ylab("Salary (dollars)") +
   scale_y_continuous(expand = c(0,0), limits = c(0,130000), breaks = c(0, 40000, 80000, 130000)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  theme(panel.spacing = unit(1, "lines"))
+  theme(panel.spacing = unit(1.5, "lines"), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  guides(fill = guide_legend(reverse = TRUE))
+
+  
  
 
 
