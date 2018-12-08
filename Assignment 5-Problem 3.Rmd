@@ -79,6 +79,7 @@ wsr_Post_Doc_Gender
 
 
 
+
 ```{r}
 med_sal_bar <- read_csv("Med_Sal_2015_bar chart.csv") 
   
@@ -90,6 +91,33 @@ med_sal_bar_15_Employ <- med_sal_bar %>%
 med_sal_bar_15_PostDoc <- med_sal_bar %>% 
   select(Field, Gender, Salary, Status) %>% 
   filter(Status!= "Non-Postdoc Employment")
+
+med_sal_vec_male <- med_sal_bar_15_Employ %>% 
+  filter(Gender == "Male") %>% 
+  pull(Salary)
+
+med_sal_vec_female <- med_sal_bar_15_Employ %>% 
+  filter(Gender == "Female") %>% 
+  pull(Salary)
+
+post_med_sal_vec_female <- med_sal_bar_15_PostDoc %>% 
+  filter(Gender == "Female") %>% 
+  pull(Salary)
+
+post_med_sal_vec_male <- med_sal_bar_15_PostDoc %>% 
+  filter(Gender == "Male") %>% 
+  pull(Salary)
+
+  
+Cliff_Test <- cliff.delta(med_sal_vec_male, med_sal_vec_female)
+
+Post_Cliff_Test <- cliff.delta(post_med_sal_vec_female, post_med_sal_vec_male)
+
+Cliff_Test
+
+Post_Cliff_Test
+
+
 
 Med_sal_barchart <- ggplot(med_sal_bar, aes(Field, Salary)) +
   geom_bar(aes(fill = Gender), width = 0.5, position = position_dodge(width = 0.6), stat = "identity") +
